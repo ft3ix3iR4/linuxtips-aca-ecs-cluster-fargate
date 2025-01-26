@@ -64,4 +64,8 @@ resource "aws_lb_listener" "internal" {
       status_code  = "200"
     }
   }
+
+    depends_on = [
+    aws_lb.internal
+  ]
 }

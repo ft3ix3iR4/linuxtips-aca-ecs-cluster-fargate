@@ -70,7 +70,13 @@ resource "aws_lb_target_group_attachment" "internal_lb" {
   target_id        = aws_lb.internal.id
   port             = 80
 
-  depends_on = [aws_lb_listener.internal]
+  # depends_on = [
+  #   aws_lb_listener.internal,
+  #   aws_lb.internal]
+  depends_on = [
+    aws_lb_listener.internal,
+    aws_lb_target_group.vpclink,
+  ]
 }
 
 resource "aws_api_gateway_vpc_link" "main" {
